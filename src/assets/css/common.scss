@@ -1,0 +1,17 @@
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.mb-9 {
+  margin-bottom: 9px;
+}
+
+.clear-fix:after {
+  display: table;
+  content: '';
+  clear: both;
+}
