@@ -1,12 +1,15 @@
 const mutations = {
-  increment(state, obj = 5) {
-    state.count += obj;
-  },
-  incrementRemove(state) {
-    state.count -= 1;
-  },
   setDayInfo(state, data) {
     state.dayInfo = data;
+  },
+  setCityHeaderInfo(state, data) {
+    state.HeadCityInfo = data;
+  },
+  setCityDemandInfo(state, data) {
+    state.DemandCityInfo = data;
+  },
+  setSearchValue(state, data) {
+    state.searchValue = data;
   },
 };
 

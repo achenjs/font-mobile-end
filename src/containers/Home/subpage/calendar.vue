@@ -24,7 +24,7 @@
     </div>
     <div class="calendar-footer">
       <img src="../../../assets/images/home/calendar-number.png"/>
-      <span>本月总场数 : 85</span>
+      <span>本月总场数 : {{count}}</span>
     </div>
   </div>
 </template>
@@ -34,8 +34,8 @@ import VueFullcalendar from 'vue-fullcalendar';
 import moment from 'moment';
 import { mapMutations } from 'vuex';
 import {
-  getCalendars,
-  getVenueByCampus,
+  // getCalendars,
+  // getVenueByCampus,
   getMonthVenueUse,
   getVenueUseByDate,
 } from '@/axios/home/index';
@@ -68,12 +68,12 @@ export default {
       setDayInfo: 'setDayInfo',
     }),
     async getCalendarsInfo() {
-      const data = await getCalendars();
-      console.log(data);
+      // const data = await getCalendars();
+      // console.log(data);
     },
     async getVenueByCampusInfo() {
-      const data = await getVenueByCampus();
-      console.log(data);
+      // const data = await getVenueByCampus();
+      // console.log(data);
     },
     async getMonthVenueUseInfo(currentDate) {
       const { data } = await getMonthVenueUse({

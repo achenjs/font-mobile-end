@@ -1,8 +1,8 @@
 <template lang="html">
-  <div id="common-hotPreach" class="mb-9" ref="scrollBox">
-    <div class="content clearfix">
+  <div id="common-hotPreach" class="mb-9">
+    <div class="content">
       <div
-        class="item fl"
+        class="item"
         v-for="(item, index) in hotList"
         :key="index">
         <router-link :to="'/firstTime/' + item.id" target="_blank">
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll';
 import moment from 'moment';
 
 export default {
@@ -30,25 +29,10 @@ export default {
     },
   },
   methods: {
-    //  初始化better-scroll
-    initScrool() {
-      this.scroll = new BScroll(this.$refs.scrollBox, {
-        scrollX: true,
-        click: true,
-      });
-    },
     formatDate(date) {
       if (!date) return '';
       return moment(date).format('YYYY-MM-DD');
     },
-  },
-  mounted() {
-    this.initScrool();
-  },
-  updated() {
-    this.$nextTick(() => {
-      this.scroll.refresh();
-    });
   },
 };
 </script>
@@ -60,11 +44,14 @@ export default {
   background-color: #ffffff;
   overflow: hidden;
   .content {
-    width: 14rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     .item {
+      display: inline-block;
       width: 3.2rem;
       margin-right: 10px;
+      overflow: hidden;
       font-size: 0px;
       &:nth-of-type(4) {
         margin-right: 0;

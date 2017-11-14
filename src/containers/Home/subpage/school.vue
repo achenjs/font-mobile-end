@@ -1,8 +1,8 @@
 <template lang="html">
-  <div id="common-school" class="mb-9" ref="scrollBox">
+  <div id="common-school" class="mb-9">
     <div class="content">
       <div
-        class="item fl"
+        class="item"
         v-for="(item, index) in schoolList"
         :key="index" v-if="index < 4">
           <router-link
@@ -21,12 +21,15 @@
           <div class="info">{{item.address}}</div>
       </div>
     </div>
+    <div class="more">
+      <span>更多</span>
+      <i class="iconfont icon-arrowright"></i>
+    </div>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll';
-import Star from '@/components/star/index';
+import Star from '@/components/Star/index';
 
 export default {
   components: {
@@ -38,23 +41,6 @@ export default {
       default: () => [],
     },
   },
-  mounted() {
-    this.initScrool();
-  },
-  methods: {
-    //  初始化better-scroll
-    initScrool() {
-      this.scroll = new BScroll(this.$refs.scrollBox, {
-        scrollX: true,
-        click: true,
-      });
-    },
-  },
-  updated() {
-    this.$nextTick(() => {
-      this.scroll.refresh();
-    });
-  },
 };
 </script>
 
@@ -65,9 +51,11 @@ export default {
   padding: 0 10px 25px 10px;
   overflow: hidden;
   .content {
-    width: 14rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
     .item {
+      display: inline-block;
       width: 3.2rem;
       margin-right: 10px;
       font-size: 0px;
@@ -147,6 +135,24 @@ export default {
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+    }
+  }
+  .more {
+    text-align: center;
+    width: 5.5rem;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px auto 0px;
+    border-radius: 30px;
+    border: 1px solid #aad1ff;
+    font-size: 0;
+    span {
+      font-size: 15px;
+      color: #51a1ff;
+    }
+    i {
+      font-size: 12px;
+      color: #51a1ff;
     }
   }
 }

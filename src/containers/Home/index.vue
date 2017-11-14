@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="common-home" ref="homeHook">
+  <div id="common-home">
     <div class="content">
       <HeaderComponent />
       <DemandComponent />
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll';
 import {
   getCmsInfo,
   getToDayVenueUse,
@@ -80,16 +79,8 @@ export default {
   mounted() {
     this.CmsInfo();
     this.TodayInfo();
-    this.initScrool();
   },
   methods: {
-    //  初始化scrool
-    initScrool() {
-      this.scroll = new BScroll(this.$refs.homeHook, {
-        scrollY: true,
-        click: true,
-      });
-    },
     async TodayInfo() {
       const result = await getToDayVenueUse();
       const { data } = result;
@@ -120,27 +111,12 @@ export default {
       this.flag = false;
     },
   },
-  updated() {
-    this.$nextTick(() => {
-      this.scroll.refresh();
-    });
-  },
 };
 </script>
 
 <style lang="scss">
 #common-home {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   background-color: #f0f0f0;
-  overflow: hidden;
-  .content {
-    overflow: hidden;
-  }
 }
 </style>

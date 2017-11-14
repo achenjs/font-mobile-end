@@ -1,12 +1,14 @@
 <template lang="html">
-  <div id="common-preach" class="mb-9" ref="scrollBox">
+  <div id="common-preach" class="mb-9">
     <div class="content">
       <div
         class="item"
         v-for="(item, index) in preachList"
-        :key="index">
+        :key="index"
+        v-if="index < 6">
         <router-link :to="'/firstTime/' + item.id" target="_blank">
           <img :src="item.picture_url" alt="图片">
+          <p>#{{item.company_name}}#</p>
         </router-link>
       </div>
     </div>
@@ -14,31 +16,12 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll';
-
 export default {
   props: {
     preachList: {
       type: Array,
       default: () => [],
     },
-  },
-  mounted() {
-    this.initScrool();
-  },
-  methods: {
-    //  初始化better-scroll
-    initScrool() {
-      this.scroll = new BScroll(this.$refs.scrollBox, {
-        scrollX: true,
-        click: true,
-      });
-    },
-  },
-  updated() {
-    this.$nextTick(() => {
-      this.scroll.refresh();
-    });
   },
 };
 </script>
@@ -50,17 +33,13 @@ export default {
   padding: 0 10px 25px 10px;
   overflow: hidden;
   .content {
-    width: 11.5rem;
-    overflow: hidden;
     .item {
-      float: left;
-      width: 2.03rem;
-      height: 77px;
-      margin: 3px 0px 0px 3px;
+      display: inline-block;
+      width: 2.2rem;
       overflow: hidden;
-      &:nth-of-type(1) {
-        width: 4.54rem;
-        height: 157px;
+      margin-left: .24rem;
+      &:nth-of-type(3n+1) {
+        margin-left: 0;
       }
       a {
         display: block;
@@ -69,7 +48,17 @@ export default {
         img {
           display: block;
           width: 100%;
-          height: 100%;
+          height: 70px;
+        }
+        p {
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 40px;
+          font-size: 12px;
+          padding: 0 10px;
+          border: 1px solid #eeeeee;
         }
       }
     }

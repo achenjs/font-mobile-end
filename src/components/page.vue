@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -30,15 +30,6 @@ export default {
     }),
     ...mapGetters({
       doneTodos: 'doneTodos',
-    }),
-    ...mapMutations({
-      increment: 'increment',
-    }),
-  },
-  // mapSta
-  methods: {
-    ...mapMutations({
-      handleClickAdd: 'increment',
     }),
   },
 };

@@ -12,3 +12,7 @@ export const getVenueByCampus = data => get('/ws/venue/getVenueByCampusId', data
 export const getMonthVenueUse = data => get('/ws/venue/getMonthVenueUse', data);
 //  日历当天宣讲企业
 export const getVenueUseByDate = data => get('/ws/venue/getVenueUseByDate', data);
+//  城市信息接口
+export const getRegionInfo = data => post('/ws/region/infoAll', data);
+//  查询搜索结果
+export const getSearchStr = data => post('/ws/cms/findStr', data);

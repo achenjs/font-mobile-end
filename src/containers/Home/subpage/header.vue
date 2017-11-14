@@ -1,10 +1,10 @@
 <template lang="html">
   <div id="common-header">
-      <span class="header-left">
-        北京
+      <span class="header-left" @click="handleRegion">
+        {{cityInfo.name}}
         <i class="iconfont icon-arrowdown"></i>
       </span>
-      <div class="header-middle">
+      <div class="header-middle" @click="handleSearch">
         <SearchInput />
       </div>
       <div class="header-right">
@@ -14,11 +14,30 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import SearchInput from '@/components/SearchInput';
 
 export default {
   components: {
     SearchInput,
+  },
+  computed: {
+    ...mapState({
+      cityInfo: 'HeadCityInfo',
+    }),
+  },
+  methods: {
+    handleRegion() {
+      this.$router.push({
+        name: 'Region',
+        params: {
+          go: 'head',
+        },
+      });
+    },
+    handleSearch() {
+      this.$router.push('/Search');
+    },
   },
 };
 </script>

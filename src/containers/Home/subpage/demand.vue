@@ -3,7 +3,7 @@
     <div class="demand-header">
       <div
         :class="['item', TabIndex === 1 ? 'active' : '']"
-        @click="handleTab(1)">找宣讲场地</div>
+        @click="handleTab(1)">找宣讲场地{{DemandCityInfo}}</div>
       <div
         :class="['item', TabIndex === 2 ? 'active' : '']"
         @click="handleTab(2)">发布宣讲需求</div>
@@ -12,21 +12,28 @@
       <ul
         class="list"
         v-if="TabIndex === 1">
-        <li class="item clearfix">
-          <span>宣讲会省会</span>
-          <i class="fr mr-5 iconfont icon-arrowright"></i>
+        <li
+          class="item"
+          :style="{paddingTop: region ? '8px' : '14px'}"
+          @click="handleRegion">
+          <span>宣讲会省份</span>
+          <i class="tr mr-5 iconfont icon-arrowright"></i>
+          <p v-if="region != null">{{region.name}}</p>
         </li>
-        <li class="item">
+        <li class="item" :style="{paddingTop: site ? '8px' : '14px'}">
           <span>场地类型</span>
-          <i class="fr iconfont icon-arrowright"></i>
+          <i class="tr iconfont icon-arrowright"></i>
+          <p v-if="site != null">{{site.name}}</p>
         </li>
-        <li class="item">
+        <li class="item" :style="{paddingTop: school ? '8px' : '14px'}">
           <span>学校名称</span>
-          <i class="fr mr-5 iconfont icon-arrowright"></i>
+          <i class="tr mr-5 iconfont icon-arrowright"></i>
+          <p v-if="school != null">{{school.name}}</p>
         </li>
-        <li class="item">
+        <li class="item" :style="{paddingTop: scale ? '8px' : '14px'}">
           <span>会场规模</span>
-          <i class="fr iconfont icon-arrowright"></i>
+          <i class="tr iconfont icon-arrowright"></i>
+          <p v-if="scale != null">{{scale.name}}</p>
         </li>
       </ul>
       <ul
@@ -34,25 +41,31 @@
         v-else>
         <li class="item clearfix">
           <span>贵公司名称</span>
-          <i class="fr mr-5 iconfont icon-arrowright"></i>
+          <i class="tr mr-5 iconfont icon-arrowright"></i>
         </li>
         <li class="item">
           <span>招聘人数</span>
-          <i class="fr iconfont icon-arrowright"></i>
+          <i class="tr iconfont icon-arrowright"></i>
         </li>
         <li class="item">
           <span>招聘周期</span>
-          <i class="fr mr-5 iconfont icon-arrowright"></i>
+          <i class="tr mr-5 iconfont icon-arrowright"></i>
         </li>
         <li class="item">
           <span>联系人</span>
-          <i class="fr iconfont icon-arrowright"></i>
+          <i class="tr iconfont icon-arrowright"></i>
         </li>
         <li class="item">
           <span>联系电话</span>
-          <i class="fr mr-5 iconfont icon-arrowright"></i>
+          <i class="tr mr-5 iconfont icon-arrowright"></i>
         </li>
       </ul>
+      <div
+        class="demand-select">
+        <div class="demand-options">
+          清华大学
+        </div>
+      </div>
     </div>
     <div class="demad-submit">
       <button>提交</button>
@@ -61,21 +74,48 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
       TabIndex: 1,
+      region: null,
+      site: null,
+      school: null,
+      scale: null,
     };
   },
+  computed: {
+    ...mapState({
+      DemandCityInfo(state) {
+        this.region = state.DemandCityInfo;
+      },
+    }),
+  },
   methods: {
+    ...mapMutations({
+      setCityDemandInfo: 'setCityDemandInfo',
+    }),
     handleTab($index) {
       this.TabIndex = $index;
     },
+    handleRegion() {
+      this.$router.push({
+        name: 'Region',
+        params: {
+          go: 'demand',
+        },
+      });
+    },
+  },
+  destroyed() {
+    this.setCityDemandInfo(null);
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #common-demand {
   width: 100%;
   .demand-header {
@@ -111,17 +151,44 @@ export default {
       color: #010101;
       font-size: 0;
       .item {
+        position: relative;
         width: 50%;
-        height: 50px;
-        line-height: 50px;
+        min-height: 50px;
         border-bottom: 0.5px solid #c4c4c4;
         font-size: 14px;
+        padding-top: 14px;
         .mr-5 {
           margin-right: 5px;
         }
         .tr {
-          text-align: right;
+          position: absolute;
+          right: 0;
+          top: 16px;
         }
+        p {
+          font-size: 12px;
+          color: #aeaeae;
+        }
+      }
+    }
+    .demand-select {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .demand-options {
+        width: 3.4rem;
+        padding: 0 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        border: 1px solid #d3d3d3;
+        border-radius: 5px;
+        color: #919191;
+        font-size: 12px;
+        margin-top: 12px;
       }
     }
   }
