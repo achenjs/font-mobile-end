@@ -30,7 +30,7 @@ export default {
 #common-preach {
   width: 100%;
   background-color: #ffffff;
-  padding: 0 10px 25px 10px;
+  padding: 0 10px 15px 10px;
   overflow: hidden;
   .content {
     .item {
@@ -38,6 +38,7 @@ export default {
       width: 2.2rem;
       overflow: hidden;
       margin-left: .24rem;
+      margin-bottom: 10px;
       &:nth-of-type(3n+1) {
         margin-left: 0;
       }
@@ -45,6 +46,8 @@ export default {
         display: block;
         width: 100%;
         height: 100%;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
         img {
           display: block;
           width: 100%;
@@ -58,7 +61,6 @@ export default {
           line-height: 40px;
           font-size: 12px;
           padding: 0 10px;
-          border: 1px solid #eeeeee;
         }
       }
     }
