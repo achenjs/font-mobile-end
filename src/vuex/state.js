@@ -1,6 +1,4 @@
 const state = {
-  count: 0,
-  cityName: '北京',
   //  header城市信息
   HeadCityInfo: {
     id: 12,
@@ -10,10 +8,6 @@ const state = {
     regionId: 403,
   },
   DemandCityInfo: null,
-  todos: [
-    { id: 1, done: true },
-    { id: 2, done: false },
-  ],
   //  search框输入内容
   searchValue: '',
   cmsInfo: null,
