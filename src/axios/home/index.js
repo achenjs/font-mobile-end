@@ -1,5 +1,4 @@
-import { post } from '../post';
-import { get } from '../get';
+import { get, post } from '../index';
 //  首页数据
 export const getCmsInfo = data => post('/ws/cms/info', data);
 //  首页今日宣讲

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Page from '@/components/page';
 import Home from '@/containers/Home/index';
 import Search from '@/containers/Search/index';
 import Region from '@/containers/Region/index';
@@ -21,10 +20,6 @@ export default new Router({
       name: 'Region',
       path: '/Region',
       component: Region,
-    },
-    {
-      path: '/page',
-      component: Page,
     },
   ],
 });

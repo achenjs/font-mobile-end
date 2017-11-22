@@ -1,16 +1,5 @@
 import axios from 'axios';
 
-/* eslint-disable */
-axios.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    console.log(error);
-  },
-);
-/* eslint-enable */
-
 const formatUrl = (data) => {
   let str = '';
   let i;

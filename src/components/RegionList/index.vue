@@ -25,7 +25,7 @@ import SearchTitle from '@/components/SearchTitle/index';
 import { mapMutations } from 'vuex';
 import {
   getRegionInfo,
-} from '../../axios/home/index';
+} from '@/axios/home/index';
 
 export default {
   data() {
