@@ -7,6 +7,8 @@ const state = {
     pId: 503,
     regionId: 403,
   },
+  //  是否打开城市选择popup
+  regionPopup: null,
   DemandCityInfo: null,
   //  search框输入内容
   searchValue: '',

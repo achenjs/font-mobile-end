@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import SearchInput from '@/components/SearchInput';
 
 export default {
@@ -27,12 +27,13 @@ export default {
     }),
   },
   methods: {
+    ...mapMutations({
+      setRegionPopup: 'setRegionPopup',
+    }),
     handleRegion() {
-      this.$router.push({
-        name: 'Region',
-        params: {
-          go: 'head',
-        },
+      this.setRegionPopup({
+        flag: true,
+        go: 'head',
       });
     },
     handleSearch() {

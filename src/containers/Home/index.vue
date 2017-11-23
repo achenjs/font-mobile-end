@@ -21,6 +21,7 @@
       <TitleComponent title="校园业务"/>
       <CampusComponent/>
     </div>
+    <RegionComponent />
     <ModalComponent :flag="flag" @handleClose="handleClose">
       <DayInfoComponent />
     </ModalComponent>
@@ -33,6 +34,7 @@ import {
   getToDayVenueUse,
 } from '@/axios/home/index';
 import Modal from '@/components/Modal/index';
+import Region from '@/containers/Region/index';
 import DayInfo from './subpage/dayInfo';
 import Header from './subpage/header';
 import Demand from './subpage/demand';
@@ -49,6 +51,7 @@ import School from './subpage/school';
 
 export default {
   components: {
+    RegionComponent: Region,
     HeaderComponent: Header,
     TodayComponent: Today,
     TitleComponent: Title,

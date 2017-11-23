@@ -61,7 +61,6 @@ export default {
     });
     this.getCalendarsInfo();
     this.getVenueByCampusInfo();
-    this.getMonthVenueUseInfo(moment(this.dateInfo).format('YYYY-MM-DD'));
   },
   methods: {
     ...mapMutations({

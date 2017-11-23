@@ -1,6 +1,8 @@
 import { get, post } from '../index';
 //  首页数据
 export const getCmsInfo = data => post('/ws/cms/info', data);
+//  校区接口
+export const getCampus = data => post('/ws/campus/getCampus', data);
 //  首页今日宣讲
 export const getToDayVenueUse = data => get('/ws/venue/getToDayVenueUse', data);
 //  首页日历

@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import SearchInput from '@/components/SearchInput/index';
 
 export default {
@@ -20,8 +21,16 @@ export default {
     SearchInput,
   },
   methods: {
+    ...mapMutations({
+      setRegionPopup: 'setRegionPopup',
+    }),
     handleBack() {
-      this.$router.push('/');
+      this.setRegionPopup({
+        flag: false,
+      });
+      if (this.$route.path === '/Search') {
+        this.$router.back();
+      }
     },
   },
 };

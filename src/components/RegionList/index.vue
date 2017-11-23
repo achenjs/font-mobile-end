@@ -22,7 +22,7 @@
 <script>
 import SearchHead from '@/components/SearchHead/index';
 import SearchTitle from '@/components/SearchTitle/index';
-import { mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import {
   getRegionInfo,
 } from '@/axios/home/index';
@@ -36,15 +36,22 @@ export default {
   mounted() {
     this.getRegion();
   },
+  computed: {
+    ...mapState({
+      regionPopup: 'regionPopup',
+    }),
+  },
   methods: {
     ...mapMutations({
       setCityHeaderInfo: 'setCityHeaderInfo',
       setCityDemandInfo: 'setCityDemandInfo',
+      setRegionPopup: 'setRegionPopup',
     }),
     async getRegion() {
       const { data } = await getRegionInfo();
       this.initCityList(data);
     },
+    //  格式化城市信息
     initCityList(data) {
       let Area = data.filter(item => item.level === 1);
       const Region = data.filter(item => item.level === 2);
@@ -63,13 +70,16 @@ export default {
       });
     },
     handleCity(item) {
-      const { go } = this.$route.params;
+      const { go } = this.regionPopup;
       if (go === 'head') {
         this.setCityHeaderInfo(item);
       } else if (go === 'demand') {
         this.setCityDemandInfo(item);
       }
-      this.$router.back();
+      // this.$router.back();
+      this.setRegionPopup({
+        flag: false,
+      });
     },
   },
   components: {
