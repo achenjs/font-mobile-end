@@ -21,7 +21,9 @@
       <TitleComponent title="校园业务"/>
       <CampusComponent/>
     </div>
+    <!-- 城市popup组件 -->
     <RegionComponent />
+    <!-- 模态框组件 slof自定义组件 -->
     <ModalComponent :flag="flag" @handleClose="handleClose">
       <DayInfoComponent />
     </ModalComponent>

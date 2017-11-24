@@ -10,7 +10,7 @@
           <div class="region-text"
             v-for="(ite, ind) in item.region"
             :key="ind"
-            @click="handleCity(ite)">
+            @click="handleClickCity(ite)">
             {{ite.name}}
           </div>
         </div>
@@ -23,18 +23,13 @@
 import SearchHead from '@/components/SearchHead/index';
 import SearchTitle from '@/components/SearchTitle/index';
 import { mapState, mapMutations } from 'vuex';
-import {
-  getRegionInfo,
-} from '@/axios/home/index';
 
 export default {
-  data() {
-    return {
-      cityList: [],
-    };
-  },
-  mounted() {
-    this.getRegion();
+  props: {
+    cityList: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     ...mapState({
@@ -47,36 +42,15 @@ export default {
       setCityDemandInfo: 'setCityDemandInfo',
       setRegionPopup: 'setRegionPopup',
     }),
-    async getRegion() {
-      const { data } = await getRegionInfo();
-      this.initCityList(data);
-    },
-    //  格式化城市信息
-    initCityList(data) {
-      let Area = data.filter(item => item.level === 1);
-      const Region = data.filter(item => item.level === 2);
-      Area = Area.map((item) => {
-        item.region = [];
-        return item;
-      });
-      let i;
-      this.cityList = Area.map((item) => {
-        for (i in Region) {
-          if (item.regionId === Region[i].pId) {
-            item.region.push(Region[i]);
-          }
-        }
-        return item;
-      });
-    },
-    handleCity(item) {
+    //  选中城市，保存选中城市信息并且关闭城市popup
+    handleClickCity(item) {
       const { go } = this.regionPopup;
       if (go === 'head') {
         this.setCityHeaderInfo(item);
       } else if (go === 'demand') {
         this.setCityDemandInfo(item);
       }
-      // this.$router.back();
+      //  关闭城市popup
       this.setRegionPopup({
         flag: false,
       });

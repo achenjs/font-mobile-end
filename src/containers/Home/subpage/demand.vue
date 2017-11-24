@@ -273,11 +273,11 @@ export default {
         .tr {
           position: absolute;
           right: 0;
-          top: 37px;
+          top: 36px;
           font-size: .12rem;
         }
         p, input {
-          font-size: 13px;
+          font-size: 14px;
           color: #000000;
         }
       }
