@@ -118,6 +118,7 @@ export default {
     this.zhaopinCount = zhaopinCount;
   },
   computed: {
+    //  当城市改变重新获取校区信息
     ...mapState({
       DemandCityInfo(state) {
         this.region = state.DemandCityInfo;
